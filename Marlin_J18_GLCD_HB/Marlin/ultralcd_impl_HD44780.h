@@ -509,9 +509,9 @@ void lcd_printPGM_utf(const char *str, uint8_t n=LCD_WIDTH) {
         //
         logo_lines(PSTR(" " STRING_SPLASH_LINE1));
         #ifdef STRING_SPLASH_LINE2
-          CENTER_OR_SCROLL(STRING_SPLASH_LINE2, 2000);
+          CENTER_OR_SCROLL(STRING_SPLASH_LINE2, 20);
         #else
-          safe_delay(2000);
+          safe_delay(20);
         #endif
       }
       else {
@@ -520,14 +520,14 @@ void lcd_printPGM_utf(const char *str, uint8_t n=LCD_WIDTH) {
         // After a delay show splash line 2, if it exists
         //
         #ifdef STRING_SPLASH_LINE2
-          #define _SPLASH_WAIT_1 1500
+          #define _SPLASH_WAIT_1 15
         #else
-          #define _SPLASH_WAIT_1 2000
+          #define _SPLASH_WAIT_1 20
         #endif
         logo_lines(PSTR(""));
         CENTER_OR_SCROLL(STRING_SPLASH_LINE1, _SPLASH_WAIT_1);
         #ifdef STRING_SPLASH_LINE2
-          CENTER_OR_SCROLL(STRING_SPLASH_LINE2, 1500);
+          CENTER_OR_SCROLL(STRING_SPLASH_LINE2, 15);
         #endif
       }
     #elif defined(STRING_SPLASH_LINE2)
@@ -536,23 +536,23 @@ void lcd_printPGM_utf(const char *str, uint8_t n=LCD_WIDTH) {
       //
       if (LCD_EXTRA_SPACE >= strlen(STRING_SPLASH_LINE2) + 1) {
         logo_lines(PSTR(" " STRING_SPLASH_LINE2));
-        safe_delay(2000);
+        safe_delay(20);
       }
       else {
         logo_lines(PSTR(""));
-        CENTER_OR_SCROLL(STRING_SPLASH_LINE2, 2000);
+        CENTER_OR_SCROLL(STRING_SPLASH_LINE2, 20);
       }
     #else
       //
       // Show only the Marlin logo
       //
       logo_lines(PSTR(""));
-      safe_delay(2000);
+      safe_delay(20);
     #endif
 
     lcd.clear();
 
-    safe_delay(100);
+    safe_delay(10);
 
     lcd_set_custom_characters(
       #if ENABLED(LCD_PROGRESS_BAR)
