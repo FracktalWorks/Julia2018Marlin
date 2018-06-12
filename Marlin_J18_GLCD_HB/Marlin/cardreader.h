@@ -54,6 +54,7 @@ public:
   void stopSDPrint();
   void getStatus();
   void printingHasFinished();
+  uint32_t getFilePos();
 
   #if ENABLED(LONG_FILENAME_HOST_SUPPORT)
     void printLongPath(char *path);
