@@ -167,6 +167,10 @@ uint16_t max_display_update_time = 0;
     extern void mesh_probing_done();
   #endif
 
+  #if ENABLED(SAVE_PROGRESS)
+	  #include "save_progress.h"
+	#endif
+
   ////////////////////////////////////////////
   //////////// Menu System Actions ///////////
   ////////////////////////////////////////////
@@ -883,6 +887,12 @@ void kill_screen(const char* lcd_msg) {
    *
    */
 
+	#if ENABLED(SAVE_PROGRESS)
+		void lcd_save_progress_stop() {
+			saveRecoveryFile(card, thermalManager, current_position);
+			lcd_return_to_status();
+		}
+	#endif
 
   void lcd_main_menu() {
     START_MENU();
@@ -929,6 +939,10 @@ void kill_screen(const char* lcd_msg) {
           else
             MENU_ITEM(function, MSG_RESUME_PRINT, lcd_sdcard_resume);
           MENU_ITEM(function, MSG_STOP_PRINT, lcd_sdcard_stop);
+		  
+		  #if ENABLED(SAVE_PROGRESS)
+			MENU_ITEM(function,"Stop and Save Progress", lcd_save_progress_stop);
+		  #endif
         }
         else {
           MENU_ITEM(submenu, MSG_CARD_MENU, lcd_sdcard_menu);

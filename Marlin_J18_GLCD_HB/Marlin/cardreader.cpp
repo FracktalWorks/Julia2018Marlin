@@ -882,4 +882,9 @@ void CardReader::printingHasFinished() {
   }
 }
 
+uint32_t CardReader::getFilePos()
+{
+	return sdpos;
+}
+
 #endif // SDSUPPORT

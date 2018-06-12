@@ -1626,4 +1626,9 @@
   //#define FILAMENT_LCD_DISPLAY
 #endif
 
+
+#define POWER_PANIC
+#define SAVE_PROGRESS
+
+
 #endif // CONFIGURATION_H

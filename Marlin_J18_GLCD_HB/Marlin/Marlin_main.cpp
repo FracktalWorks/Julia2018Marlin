@@ -257,6 +257,7 @@
 #include "duration_t.h"
 #include "types.h"
 #include "gcode.h"
+#include "save_progress_util.h"
 
 #if HAS_ABL
   #include "vector_3.h"
@@ -340,6 +341,12 @@
                            && ubl.z_values[0][0] == 0 && ubl.z_values[1][0] == 0 && ubl.z_values[2][0] == 0 )  \
                            || isnan(ubl.z_values[0][0]))
 #endif
+
+
+#if ENABLED(POWER_PANIC)
+  #include "power_panic.h"
+#endif
+
 
 bool Running = true;
 
@@ -13114,6 +13121,10 @@ void setup() {
   #if ENABLED(SWITCHING_NOZZLE)
     move_nozzle_servo(0);  // Initialize nozzle servo
   #endif
+  
+	#if ENABLED(POWER_PANIC)
+		setup_PowerPanic();
+	#endif
 }
 
 /**
